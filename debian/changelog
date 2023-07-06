@@ -1,5 +1,585 @@
-template-repository (1.0-1) unstable; urgency=medium
+fping (5.1-1) unstable; urgency=medium
 
-  * Initial release
+  [ Axel Beckert ]
+  * Import new upstream bugfix and maintenancen release 5.1.
+  * Update packaging copyright years in debian/copyright. Thanks Lintian!
+  * Declare compliance with Debian Policy 4.6.0. (No changes needed.)
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+  [ Paul Slootman ]
+  * Fix postinst failure when dpkg-statoverride is already used.
+    (Closes: #968196)
+
+ -- Axel Beckert <abe@debian.org>  Mon, 07 Feb 2022 01:56:59 +0100
+
+fping (5.0-1) unstable; urgency=low
+
+  * Import new upstream feature release 5.0. Incompatible changes:
+    + In loop and count mode, a line is now printed for every lost
+      packet. (Closes: #926808)
+    + The returned size in bytes now always excludes the IP
+      header. (Previously only was for IPv6 the case.)
+
+ -- Axel Beckert <abe@debian.org>  Fri, 07 Aug 2020 23:16:36 +0200
+
+fping (4.4-1) unstable; urgency=medium
+
+  * Import new upstream bugfix release 4.4.
+
+ -- Axel Beckert <abe@debian.org>  Mon, 03 Aug 2020 04:02:29 +0200
+
+fping (4.3-1) unstable; urgency=medium
+
+  * Import new upstream release 4.3.
+    + Drop all patches as all were cherry-picked from upstream.
+    + Fixes wrong long option for -s in man page. (Closes: #926806)
+
+ -- Axel Beckert <abe@debian.org>  Sat, 11 Jul 2020 19:55:04 +0200
+
+fping (4.2-3) unstable; urgency=medium
+
+  * Cherry-pick upstream patch "Do not fail if using fping6 with -6
+    flag". (Closes: #955436, LP: #1875242)
+  * Bump debhelper compatibility level to 13 via build dependency.
+
+ -- Axel Beckert <abe@debian.org>  Mon, 27 Apr 2020 15:37:16 +0200
+
+fping (4.2-2) unstable; urgency=medium
+
+  * Fix FTBFS with GCC 10 by cherry-picking upstream fix. (Closes:
+    #957227)
+  * Bump debhelper compatibility level to 12.
+    + Build-depend on "debhelper-compat (= 12)" to replace debian/compat.
+  * Declare compliance with Debian Policy 4.5.0. (No changes needed.)
+
+ -- Axel Beckert <abe@debian.org>  Sat, 18 Apr 2020 05:14:27 +0200
+
+fping (4.2-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Fixes hang with '-6', with ipv6 kernel module, but not loaded.
+    + Drops confusing warning about some timeout/period combinations.
+  * Declare compliance with Debian Policy 4.3.0. (No changes needed.)
+
+ -- Axel Beckert <abe@debian.org>  Tue, 19 Feb 2019 23:27:56 +0100
+
+fping (4.1-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Fixes running on servers with disabled IPv6. (Closes: #891704)
+  * Update debian/watch to also look for PGP signatures.
+  * Switch debian/watch to version 4.
+  * Add upstream PGP public key.
+  * Remove trailing blank line from debian/changelog.
+  * Declare compliance with Debian Policy 4.2.1. (No changes needed.)
+
+ -- Axel Beckert <abe@debian.org>  Tue, 18 Sep 2018 02:11:18 +0200
+
+fping (4.0-6) unstable; urgency=medium
+
+  * Set "Rules-Requires-Root: no".
+  * Declare compliance with Debian Policy 4.1.3. (No changes needed.)
+  * Bump packaging copyright years.
+  * Bump debhelper compatibility level to 11.
+    + Update versioned debhelper build-dependency accordingly.
+  * Update Vcs-* headers for switch to salsa.debian.org.
+
+ -- Axel Beckert <abe@debian.org>  Tue, 02 Jan 2018 10:13:55 +0100
+
+fping (4.0-5) unstable; urgency=low
+
+  * Use "pod2man -u" to convert debian/fping6.pod properly wrt. UTF-8.
+  * Use HTTPS in debian/watch.
+  * Declare compliance with Debian Policy 4.1.1. (No changes needed.)
+  * Fix warning output in postinst to emit file name again. (Regression
+    introduced in 4.0~rc3-1.)
+  * debian/postinst: Use $(…) instead of backticks.
+  * Fallback to setuid installation if setcap fails and no statoverride
+    exists. (Closes: #801431)
+
+ -- Axel Beckert <abe@debian.org>  Fri, 27 Oct 2017 22:29:09 +0200
+
+fping (4.0-4) unstable; urgency=medium
+
+  * Fix typo in debian/NEWS. Thanks Salvatore Bonaccorso and Wouter
+    Verhelst! (Closes: #874341)
+  * Provide backwards-compatibility symlink to fping6. Unfortunately
+    required at least until Stretch goes EoL. (Closes: #873797)
+
+ -- Axel Beckert <abe@debian.org>  Wed, 06 Sep 2017 02:46:41 +0200
+
+fping (4.0-3) unstable; urgency=medium
+
+  * Add NEWS.Debian mentioning that fping6 is no more needed. (LP:
+    #1712812)
+  * No more install fping6 man page symlink, drop debian/links file.
+  * Change unlicense.org URL to HTTPS. (Thanks DUCK!)
+  * Declare compliance with Debian Policy 4.1.0. (No changes needed.)
+
+ -- Axel Beckert <abe@debian.org>  Thu, 31 Aug 2017 01:22:43 +0200
+
+fping (4.0-2) unstable; urgency=low
+
+  * Upload to unstable again.
+  * Declare compliance with Debian Policy 4.0.0. (No changes needed.)
+
+ -- Axel Beckert <abe@debian.org>  Sun, 18 Jun 2017 23:28:00 +0200
+
+fping (4.0-1) experimental; urgency=medium
+
+  * New upstream release.
+    + Remove debian/fping.docs: No more needed as "README" no more exists.
+  * Add debian/upstream/metadata.
+  * Rename debian/fping.* to debian/*, it only builds a single binary
+    package (not counting automatic debug packages).
+
+ -- Axel Beckert <abe@debian.org>  Sun, 23 Apr 2017 22:20:29 +0200
+
+fping (4.0~rc3-1) experimental; urgency=low
+
+  * New upstream release candidate.
+    + Update postinst script again to no more try to run setcap on fping6
+      (which no more exists).
+    + Remove all cherry-picked patches.
+    + Add stanza for src/optparse.* and the Unlicense to debian/copyright.
+  * Fix typo in 3.16~rc2-1 changelog entry.
+
+ -- Axel Beckert <abe@debian.org>  Tue, 28 Feb 2017 01:01:32 +0100
+
+fping (3.16-1) experimental; urgency=low
+
+  * New upstream release.
+    + Revert postinst changes from 3.16~rc2-1. (Merging of fping and
+      fping6 has been suspended until fping 4.)
+  * Cherry-pick two portability fixes from upstream. Should fix FTBFS on
+    GNU/Hurd.
+  * Remove lintian override for outdated-autotools-helper-file false
+    positive again: Upstream used newer autotools again.
+
+ -- Axel Beckert <abe@debian.org>  Fri, 10 Feb 2017 12:16:28 +0100
+
+fping (3.16~rc2-1) experimental; urgency=low
+
+  * New upstream release candidate.
+    + Update postinst script to no more try to run setcap on fping6 (which
+      is now a symlink).
+  * Add lintian override for outdated-autotools-helper-file false positive
+    with compat level 10. (See #820441.)
+
+ -- Axel Beckert <abe@debian.org>  Wed, 08 Feb 2017 21:05:33 +0100
+
+fping (3.16~rc1-1) experimental; urgency=low
+
+  * New upstream release candidate.
+    + Makes -q really quiet. (Closes: #756278)
+
+ -- Axel Beckert <abe@debian.org>  Sat, 14 Jan 2017 15:51:29 +0100
+
+fping (3.15-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Drop cherry-picked patch.
+
+ -- Axel Beckert <abe@debian.org>  Wed, 11 Jan 2017 15:44:29 +0100
+
+fping (3.14-2) unstable; urgency=medium
+
+  * Cherry-pick 356e7b3a from upstream to fix FTBFS on non-linux.
+
+ -- Axel Beckert <abe@debian.org>  Wed, 11 Jan 2017 02:19:19 +0100
+
+fping (3.14-1) unstable; urgency=medium
+
+  * Import upstream version 3.14
+    + Enhances: netdata (>= 1.5)
+  * Declare compliance with Debian Policy 3.9.8.
+  * Switch to debhelper compat level 10.
+    + Remove explicit usage of autotools-dev and the according b-d.
+  * Enable all hardening build flags.
+  * Switch several URLs in packaging to https://.
+
+ -- Axel Beckert <abe@debian.org>  Tue, 10 Jan 2017 18:25:32 +0100
+
+fping (3.13-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+    + Drop sole patch, fixed upstream.
+
+ -- Axel Beckert <abe@debian.org>  Mon, 26 Oct 2015 20:37:21 +0100
+
+fping (3.12-2) unstable; urgency=medium
+
+  * Apply patch by Jamie Heilman to fix segfault upon ICMP unreachable.
+    (Closes: #802035)
+
+ -- Axel Beckert <abe@debian.org>  Sat, 17 Oct 2015 22:07:58 +0200
+
+fping (3.12-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+
+ -- Axel Beckert <abe@debian.org>  Thu, 15 Oct 2015 01:17:42 +0200
+
+fping (3.11-1) unstable; urgency=medium
+
+  * Import new upstream release
+  * Remove Anibal from the Maintainer field upon his request. Thanks for
+    maintaining fping for many years!
+    + Move myself from Uploaders to Maintainers.
+
+ -- Axel Beckert <abe@debian.org>  Wed, 14 Oct 2015 00:08:10 +0200
+
+fping (3.10-3) unstable; urgency=medium
+
+  * Fix bug script. Reportbug requires all output on fd 3.
+  * Make bug script locally executable, too.
+  * Fix wrong TLD in URL in debian/copyright.
+  * Add dependency on netbase for /etc/protocols (Closes: #790639)
+  * Apply wrap-and-sort.
+  * Update Vcs-Browser to use HTTPS and the cgit web interface.
+  * Declare compliance with Debian Policy 3.9.6.
+  * Convert debian/copyright to machine-readable DEP5 format.
+
+ -- Axel Beckert <abe@debian.org>  Tue, 30 Jun 2015 17:47:28 +0200
+
+fping (3.10-2) unstable; urgency=medium
+
+  * Don't abort installation/upgrade if setting capabilities fails. Emit a
+    warning instead and recommend to make files setuid via
+    dpkg-statoverride as alternative. (Closes: #742229)
+
+ -- Axel Beckert <abe@debian.org>  Fri, 08 Aug 2014 00:28:38 +0200
+
+fping (3.10-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Axel Beckert <abe@debian.org>  Tue, 06 May 2014 13:26:45 +0200
+
+fping (3.9-2) unstable; urgency=medium
+
+  * Add linux-only dependency on libcap2-bin. (Closes: #741513)
+    Thanks to  Jean-Jacques DOTI for the notice.
+  * Add bug-script to report permissions and capabilities
+
+ -- Axel Beckert <abe@debian.org>  Thu, 13 Mar 2014 13:25:29 +0100
+
+fping (3.9-1) unstable; urgency=medium
+
+  * New upstream release
+  * Use capabilities instead of setuid on Linux
+    + Make lintian override for "setuid-binary" architecture-dependent
+
+ -- Axel Beckert <abe@debian.org>  Tue, 11 Mar 2014 19:13:39 +0100
+
+fping (3.8-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Axel Beckert <abe@debian.org>  Wed, 13 Nov 2013 18:17:22 +0100
+
+fping (3.7-1) unstable; urgency=low
+
+  * New upstream release
+  * Simplify debian/rules a lot by building both binaries in one go.
+    Thanks David Schweikert for his hint!
+    + Drop debian/fping.dirs and debian/fping.install (no more needed)
+    + Drop build-dependency on dh-exec (no more needed)
+    + Drop versioned build-dependency on dpkg-dev (no more needed)
+  * Apply wrap-and-sort.
+  * Bump Standards-Version to 3.9.5 (no changes)
+
+ -- Axel Beckert <abe@debian.org>  Wed, 06 Nov 2013 22:09:35 +0100
+
+fping (3.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Axel Beckert <abe@debian.org>  Sat, 12 Oct 2013 13:43:02 +0200
+
+fping (3.6~rc2-1) unstable; urgency=low
+
+  * New upstream release candidate
+    + Fixes  loop issue after 65536 pings (Closes: #525431)
+
+ -- Axel Beckert <abe@debian.org>  Tue, 01 Oct 2013 21:01:51 +0200
+
+fping (3.5-1) unstable; urgency=low
+
+  * New upstream release
+  * Pass -DIPV6=1 to CPPFLAGS instead to CFLAGS. Thanks Bernhard R. Link
+    for the hint!
+
+ -- Axel Beckert <abe@debian.org>  Fri, 24 May 2013 00:32:51 +0200
+
+fping (3.4-3) unstable; urgency=low
+
+  * Upload to unstable again.
+  * Use dh_exec to install fping6 via dh_install
+    - Add build-dependency on dh-exec.
+    - Bump compat-level and build-dependency of debhelper to 9 to be
+      able to use executable install files.
+    - Call dh_fixperms before dh_strip due to #706939. (Done by dh7 style
+      debian/rules file, too.)
+  * Use dh_link and dh_installman.
+  * Finally reduce normalized debian/rules to dh7 style.
+  * Bump Standards-Version to 3.9.4 (no changes)
+  * Disable debhelper verbosity by default.
+
+ -- Axel Beckert <abe@debian.org>  Tue, 07 May 2013 00:33:17 +0200
+
+fping (3.4-2) experimental; urgency=low
+
+  * Use dh_autotools-dev_*config to update config.{guess,sub}.
+    - Add build-dependency on autotools-dev.
+    - Fixes lintian warning outdated-autotools-helper-file.
+  * Pass dpkg-buildflags' CFLAGS to CLFAGS for IPv6 build
+    - Fixes blhc warning dpkg-buildflags-missing (1 of 2)
+
+ -- Axel Beckert <abe@debian.org>  Sat, 29 Dec 2012 19:10:05 +0100
+
+fping (3.4-1) experimental; urgency=low
+
+  * New upstream release
+  * Fix previous changelog entry (Correct description of solution for
+    #661195, mention further bugs fixed by upstream.)
+
+ -- Axel Beckert <abe@debian.org>  Sun, 16 Sep 2012 15:13:27 +0200
+
+fping (3.3~rc1-1) experimental; urgency=low
+
+  * New upstream release candidate
+    - Fixes annoying "ICMP host unreachable" if fpinged hosts on the local
+      network were not reachable (Closes: #340297)
+    - Effect of -q better documented (Closes: #661195)
+    - Numeric options in man page are now consistent (Closes: #673348)
+    - Looping no more terminates when no route to the target exists
+      (Closes: #308695)
+    - Fixes ping size on amd64 (LP: #649646)
+    - Fixes "options inet6" breaking IPv4 name resolution (Closes:
+      #558652, LP: #489860)
+    - Fixes -A for fping6 (Closes: #558651)
+
+ -- Axel Beckert <abe@debian.org>  Sat, 21 Jul 2012 02:04:04 +0200
+
+fping (3.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Axel Beckert <abe@debian.org>  Mon, 25 Jun 2012 17:31:44 +0200
+
+fping (3.2~rc1-1) unstable; urgency=low
+
+  * New upstream release candidate
+    - Fixes infinite loop
+  * Enable hardening build flags
+    - Add build dependency on dpkg-dev (>= 1.16.1~)
+  * Let the watch file also look for release candidates
+
+ -- Axel Beckert <abe@debian.org>  Sun, 27 May 2012 19:52:55 +0200
+
+fping (3.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Add Vcs-* Headers
+  * Update watch file to ignore fping-current.tar.gz
+
+ -- Axel Beckert <abe@debian.org>  Thu, 26 Apr 2012 19:10:43 +0200
+
+fping (3.1~rc1-1) unstable; urgency=low
+
+  * Switch to David Schweiker's fping 3 as new upstream
+    + Add watch file to point to new upstream
+    + Update Homepage field
+    + Update debian/rules to fit changed tar ball layout
+    + Update debian/copyright
+  * New upstream release (Closes: #658230)
+    + drop all patches (new upstream included all patches from
+      2.4b2-to-ipv6-16.1)
+  * Add myself as Uploader.
+  * Switch to source format "3.0 (quilt)".
+  * Bump Standards-Version to 3.9.3 (no changes needed).
+  * Bump debhelper compatibility level to 7
+    + Let dh_clean remove *-stamp files
+    + Replace "dh_clean -k" by "dh_prep"
+  * Fix the following lintian warnings:
+    + debian-rules-missing-recommended-target
+    + package-contains-empty-directory
+  * Remove conflicts and replaces against no more existent packages.
+  * Use dh_lintian for lintian overrides
+    + Rename debian/lintian.overrides to debian/fping.lintian-overrides.
+
+ -- Axel Beckert <abe@debian.org>  Mon, 23 Apr 2012 20:17:48 +0200
+
+fping (2.4b2-to-ipv6-16.1) unstable; urgency=low
+
+  * NMU during Moenchengladbach BSP
+  * Fixes FTBFS on kfreebsd (Closes: #555398)
+  * Fixes typo "Paramter" in binary
+
+ -- Axel Beckert <abe@deuxchevaux.org>  Sat, 23 Jan 2010 16:22:02 +0100
+
+fping (2.4b2-to-ipv6-16) unstable; urgency=low
+
+  * Fix the following bugs
+    - Network byte order sensitivity was missing completely.
+      Added hopefully all missing calls.
+    - The sequence numbering scheme used led to packet drops.
+      Changed it to a more senseful numbering scheme.
+    - Some minor C programming mistakes ('=' instead of '==').
+    Patch by Stephan Fuhrmann; closes: #502569
+  * Add support for command line select timeout setting
+    Patch by Marton Balint; closes: #502575
+  * Remove symlinks in /usr/sbin; closes: #377732
+  * Standards-Version is 3.8.0
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Sat, 18 Oct 2008 12:04:52 +1100
+
+fping (2.4b2-to-ipv6-15) unstable; urgency=low
+
+  * Added interface binding (-I) for fping
+    Patch by Peter Naulls <peter@mushroomnetworks.com>
+    Closes: #439014
+  * Fixed a couple of typos in fping.8. Closes: #423180
+  * Added homepage control header
+  * Bumped Standards-Version to 3.7.3
+  * Fixed the following lintian issue:
+    - debian-rules-sets-DH_COMPAT
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Mon, 03 Mar 2008 17:46:17 +1100
+
+fping (2.4b2-to-ipv6-14) unstable; urgency=low
+
+  * Set Standards-Version to 3.7.2.
+  * Set DH_COMPAT to 5.
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Fri, 23 Jun 2006 20:56:39 +1000
+
+fping (2.4b2-to-ipv6-13) unstable; urgency=low
+
+  * Fixed stdout flush problem, closes: #340146.
+    Patch by Bart Martens <bart.martens@advalvas.be>.
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Fri, 30 Dec 2005 08:30:09 +1100
+
+fping (2.4b2-to-ipv6-12) unstable; urgency=low
+
+  * Fixed "problem with option -r (retry limit)", closes: #318402.
+    Patch by Qingning Huo <qingningh@lanware.co.uk>.
+  * Set Standards-Version to 3.6.2 in debian/control and DH_COMPAT
+    to 4 in debian/rules..
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Sat, 08 Oct 2005 21:26:35 +1000
+
+fping (2.4b2-to-ipv6-11) unstable; urgency=low
+
+  * Fixed "would be useful to specify 'source address' like ping for multi
+    homed machines", closes: #198486.
+    Patch by Marc Haber <mh+debian-bugs@zugschlus.de>.
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Thu, 02 Jun 2005 08:14:54 +1000
+
+fping (2.4b2-to-ipv6-10) unstable; urgency=low
+
+  * Fixed "unnecessary delay with the -c option after the last packet"
+    (Closes: #293856). Patch by Niko Tyni <ntyni@iki.fi>
+  * New maintainer's email address.
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Sun, 06 Feb 2005 23:25:57 +1100
+
+fping (2.4b2-to-ipv6-9) unstable; urgency=low
+
+  * Fixed "fping6 always does reverse lookup" (Closes: #273647).
+    Patch by Jeroen Massar and forwarded by Bernhard Schmidt <berni@birkenwald.de>
+
+ -- Anibal Monsalve Salazar <A.Monsalve.Salazar@IEEE.org>  Mon, 10 Jan 2005 00:01:32 +1100
+
+fping (2.4b2-to-ipv6-8) unstable; urgency=low
+
+  * New maintainer.
+
+ -- Anibal Monsalve Salazar <A.Monsalve.Salazar@IEEE.org>  Thu, 20 May 2004 09:42:08 +1000
+
+fping (2.4b2-to-ipv6-7) unstable; urgency=low
+
+  * Build fping in build/ipv[46] instead of build and build-ipv6.
+  * Made DNS errors non-fatal for IPv6 (closes: #198056).
+
+ -- Herbert Xu <herbert@debian.org>  Fri, 20 Jun 2003 21:36:30 +1000
+
+fping (2.4b2-to-ipv6-6) unstable; urgency=low
+
+  * Do not use incorrect linux.h file (closes: #85468).
+
+ -- Herbert Xu <herbert@debian.org>  Sat, 17 May 2003 14:13:11 +1000
+
+fping (2.4b2-to-ipv6-5) unstable; urgency=low
+
+  * Fixed yet another divide by zero bug (closes: #148445).
+
+ -- Herbert Xu <herbert@debian.org>  Tue,  4 Jun 2002 12:18:03 +1000
+
+fping (2.4b2-to-ipv6-4) unstable; urgency=low
+
+  * Made fping6 setuid (closes: #136386).
+  * Moved fping back into bin.
+  * Partially applied IPv6 patch to fix IPv6 checksums (closes: #136479).
+
+ -- Herbert Xu <herbert@debian.org>  Sun,  7 Apr 2002 20:36:56 +1000
+
+fping (2.4b2-to-ipv6-3) unstable; urgency=low
+
+  * Added compatibility symlink for fping (closes: #135203).
+
+ -- Herbert Xu <herbert@debian.org>  Sat, 23 Feb 2002 08:34:11 +1100
+
+fping (2.4b2-to-ipv6-2) unstable; urgency=low
+
+  * Turned setuid bit on again since the code before dropping privilegs is
+    minimal.
+  * Fixed another divide by zero error (closes: #132370).
+
+ -- Herbert Xu <herbert@debian.org>  Thu,  7 Feb 2002 20:10:48 +1100
+
+fping (2.4b2-to-ipv6-1) unstable; urgency=low
+
+  * New upstream release.
+  * Install fping into sbin as done by upstream.
+  * Turned setuid bit off.
+
+ -- Herbert Xu <herbert@debian.org>  Fri,  1 Feb 2002 22:11:59 +1100
+
+fping (2.2b2-3) unstable; urgency=low
+
+  * Removed INSTALL file from package (closes: #84050).
+  * Fixed alignment bug.
+
+ -- Herbert Xu <herbert@debian.org>  Sat, 10 Feb 2001 19:25:18 +1100
+
+fping (2.2b2-2) unstable; urgency=low
+
+  * Made changes for dpkg-statoverride (closes: #83838).
+
+ -- Herbert Xu <herbert@debian.org>  Sun, 28 Jan 2001 21:53:05 +1100
+
+fping (2.2b2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixed typo that prevented -d from working (closes: #83255).
+  * Drop root privileges after opening the socket (closes: #81589).
+  * Fixed the options [tip], they were out by a factor of 10
+    (Richard Kettlewell, closes: #83742).
+
+ -- Herbert Xu <herbert@debian.org>  Sun, 28 Jan 2001 00:09:41 +1100
+
+fping (2.2b1-2) unstable; urgency=low
+
+  * Fixed typo in control file, spotted by William Ono (closes: #49909).
+
+ -- Herbert Xu <herbert@debian.org>  Mon, 15 May 2000 12:27:03 +1000
+
+fping (2.2b1-1) unstable; urgency=low
+
+  * Initial release.
+  * Fixed divide by zero error (closes: #29902).
+
+ -- Herbert Xu <herbert@debian.org>  Sat, 30 Oct 1999 16:36:19 +1000

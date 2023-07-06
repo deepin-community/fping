@@ -1,0 +1,47 @@
+fping (5.0-1) unstable; urgency=medium
+
+  From the upstream changelog under "Incompatible Changes":
+
+  * In non-quiet loop and count mode, a line is printed for every lost
+    packet (https://github.com/schweikert/fping/pull/175):
+
+      $ fping -D -c2 8.8.8.8 8.8.8.7
+      [1596092373.18423] 8.8.8.8 : [0], 64 bytes, 12.8 ms (12.8 avg, 0% loss)
+      [1596092374.18223] 8.8.8.7 : [0], timed out (NaN avg, 100% loss)
+      [1596092374.18424] 8.8.8.8 : [1], 64 bytes, 12.3 ms (12.5 avg, 0% loss)
+      [1596092375.18344] 8.8.8.7 : [1], timed out (NaN avg, 100% loss)
+
+      8.8.8.8 : xmt/rcv/%loss = 2/2/0%, min/avg/max = 12.3/12.5/12.8
+      8.8.8.7 : xmt/rcv/%loss = 2/0/100%
+
+  * The returned size in bytes now always excludes the IP header, so if
+    before it reported '84 bytes' e.g. when using 'fping -l', now it
+    reports '64 bytes'.  This is to make the reported size consistent with
+    ping(8) from iputils and also with fping when pinging a IPv6 host
+    (which never included the IPv6 header size).
+
+ -- Axel Beckert <abe@debian.org>  Fri, 07 Aug 2020 22:10:00 +0200
+
+fping (4.0-4) unstable; urgency=medium
+
+  For backward compatibility with remote smokeping configurations on older
+  releases, the fping Debian package will continue to provide
+  /usr/bin/fping6 until at least Debian 9 Stretch is end of life.
+
+  Please do not use fping6 in scripts or configurations which don't
+  require it for backwards-compatibility with older fping versions.
+
+ -- Axel Beckert <abe@debian.org>  Wed, 06 Sep 2017 01:57:56 +0200
+
+fping (4.0-3) unstable; urgency=medium
+
+  From the upstream changelog:
+
+    fping and fping6 are now unified into one binary. It means that, for
+    example, doing 'fping google.com' is going to ping the IPv6 IP of
+    google.com on IPv6-enabled hosts.
+
+  You can force usage of IPv6 or IPv4 by adding the commandline options
+  -4 or -6.
+
+ -- Axel Beckert <abe@debian.org>  Sat, 26 Aug 2017 09:26:46 +0200

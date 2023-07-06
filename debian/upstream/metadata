@@ -1,0 +1,10 @@
+%YAML 1.1
+---
+# https://wiki.debian.org/UpstreamMetadata
+Bug-Database: https://github.com/schweikert/fping/issues
+Changelog: https://github.com/schweikert/fping/blob/develop/CHANGELOG.md
+Contact: David Schweikert <david@schweikert.ch>
+Name: fping
+Homepage: https://www.fping.org/
+Repository: https://github.com/schweikert/fping.git
+Repository-Browse: https://github.com/schweikert/fping
