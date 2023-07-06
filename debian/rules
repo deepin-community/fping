@@ -1,4 +1,29 @@
 #!/usr/bin/make -f
+# GNU copyright 1997 to 1999 by Joey Hess.
+# Copyright (c) 1999 Herbert Xu <herbert@debian.org>
+# Copyright (c) 2004-2005 Anibal Monsalve Salazar <anibal@debian.org>
+# Copyright (c) 2012-2017 Axel Beckert <abe@debian.org>
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 %:
 	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-ipv4 --enable-ipv6
+
+override_dh_fixperms:
+	dh_fixperms
+	mv debian/fping/usr/sbin/fping* debian/fping/usr/bin/
+	rmdir debian/fping/usr/sbin/
+	# Use setuid only on non-linux architectures
+	if dpkg-architecture -qDEB_HOST_ARCH_OS | grep -qv linux; then \
+		chmod 4755 debian/fping/usr/bin/fping*; \
+	fi
+
+override_dh_installman:
+	pod2man  -c "" -s 8 -r BACKWARDS-COMPATIBILITY -u debian/fping6.pod debian/fping6.8
+	dh_installman
